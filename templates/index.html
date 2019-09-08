@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Speech Complaint</title>
+    <meta name="description" content="A Voice Note App that allows you to take voice and/or text complaints and play them back. Allows you to redirect you to the correct department.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="assets/ico/favicon.ico">
+    <!-- Custom Style Sheet -->
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/style.css') }}">
+    <!-- Bootstrap CDN CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.1.1/cerulean/bootstrap.min.css" rel="stylesheet" integrity="sha384-0Mou2qXGeXK7k/Ue/a1hspEVcEP2zCpoQZw8/MPeUgISww+VmDJcy2ri9tX0a6iy" crossorigin="anonymous">
+
+</head>
+
+<body>
+    <div class="container-fluid align-center">
+        <img src="{{url_for('static', filename='img/code-mic-150.png') }}" alt="Voice Note App Logo">
+        <h1>Speech to Complaint</h1>
+        <p class="page-description">This app allows you to take voice and/or text complaints and then redirects you to the respective department of the complaint.</p>
+        <hr>
+        <h3 class="no-browser-support">Sorry, Your Browser Doesn't Support the Web Speech API. Try Opening This Demo In Google Chrome.</h3>
+        <div class="app">
+            <div class="row">
+                <div class="col-md-6 align-center">
+                    <h3>Add New Voice Note</h3>
+                    <div class="input-single">
+                        <textarea id="note-textarea" placeholder="Create a new note by typing or using voice recognition." rows="6"></textarea>
+                    </div>
+                    <button id="start-record-btn" class="btn-success" title="Start Recording">Start Recognition</button>
+                    <button id="pause-record-btn" class="btn-warning" title="Pause Recording">Pause Recognition</button>
+                    <button id="save-note-btn" class="btn-info" title="Send Complaint">Send Complaint</button>
+                    <p id="recording-instructions">Press the
+                        <strong>Start Recognition</strong> button and allow access.</p>
+                </div>
+                <div class="col-md-6 align-center">
+                    <h3>My Complaints</h3>
+                    <ul id="notes">
+                        <li>
+                            <p class="no-notes">You don't have any recordings.</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- /row -->
+        </div>
+        <!-- /app -->
+    </div>
+
+    <div id="footer">
+        <div class="clearfix1">
+            <div class="container">
+                <div class="row">
+
+                    <div class="center">
+                        <p>Speech to Complaint</p>
+                    </div>
+
+                </div>
+                <!-- /row -->
+            </div>
+            <!-- /container -->
+        </div>
+    </div>
+    <!-- /footer -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type=text/javascript src="{{url_for('static', filename='js/5.js') }}"></script>
+
+</body>
+
+</html>
