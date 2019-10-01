@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+        <head>
+                <!-- Required meta tags -->
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+                <!-- Bootstrap CSS -->
+                <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+                <title>Complaints of {{dept}}</title>
+        </head>
+        <body>
+                <nav class="navbar navbar-dark bg-dark">
+                        <span class="navbar-brand mb-0 h1"><h1>Administration Page for {{dept}} </h1></span>
+                        <ul class="nav navbar-nav navbar-right">
+                        <li class="active" align="right"><img src="{{url_for('static', filename='img/logo.png') }}"></li></ul>
+                </nav><br><br>
+                <div class="container">
+                        <h2>Pending Complaints</h2>
+                        <h4>{{department}}</h4>
+                        <table border=1>
+                                <thead><tr><th>cid</th><th>Complaint</th><th>Department</th><th>user</th><th>Date</th><th>Resolved</th><th>Resolve Date</th></tr></thead>
+                                <tbody>
+                                        {% for c,i,j,u,k,l,m in complaints %}
+                                                <tr><td>{{c}}</td><td>{{i}}</td><td>{{j}}</td><td>{{u}}</td><td>{{k}}</td><td>{{l}}</td></td><td>{{m}}</td> <td> <a href="{{url_for('misclass',c=c)}}"><button class="btn btn-warning">Misclass </button></a> <a href="{{url_for('resolve',c=c)}}"> <button class="btn btn-success">Resolve </button> </a> </td>
+                                                        <td> <a href="{{url_for('delete',c=c)}}"><button class="btn btn-danger">Delete </button></a> <a href="{{url_for('unresolve',c=c)}}"> <button class="btn"> Unresolve </button> </a> </td>
+                                                </tr>
+                                        {% endfor %}
+
+                                </tbody>
+                        </table>
+                        <br><br><br><br>
+                        <hr>
+                        <div class=row>
+                                <div class="col-md-2"></div>
+
+
+
+
+                                <a href="{{url_for('analysis')}}"><button class="btn btn-danger">Analysis</button></a></li>
+                                        <div class="col-md-6"></div>
+                                        <a href="{{url_for('logout')}}"><button class="btn btn-danger">Log out</button></a></li>
+
+
+
+
+                        </div>
+                </div>
+                <!-- Optional JavaScript -->
+                <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+                <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+                <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+        </body>
+</html>

@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+        <head>
+                <!-- Required meta tags -->
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+                <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js'></script>
+
+                <!-- Bootstrap CSS -->
+                <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+                 <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/misclass.css') }}">
+                <title>Analysis for the administration of {{dept}}</title>
+        </head>
+        <body>
+                <nav class="navbar navbar-dark bg-dark">
+                        <span class="navbar-brand mb-0 h1"><h3> Analysis </h3></span>
+                        <ul class="nav navbar-nav navbar-right">
+                        <li class="active" align="right"><img src="{{url_for('static', filename='img/logo.png') }}"></li></ul>
+                </nav><br><br>
+                <div class="container">
+
+                        <div class=row>
+                                <div class="col-md-4"></div>
+                                <div class ="col-md-4">
+                                        <table border = 1>
+                                                <thead><tr><th>did</th><th>department</th><th>issues</th><th>resolutions</th><th>misclassifications</th><th>diff</th></tr></thead>
+                                                <tbody>
+                                                        {% for did,dept,issues,resolutions,mis,diff in l %}
+                                                                <tr><td>{{did}}</td><td>{{dept}}</td><td>{{issues}}</td><td>{{resolutions}}</td><td>{{mis}}</td><td>{{diff}}</td></tr>
+                                                        {% endfor %}
+
+                                                </tbody>
+                                        </table>
+
+                                </div>
+                                <div class="col-md-4"></div>
+                        </div>
+                        <br><br>
+
+                        <hr>
+
+                </div>
+                <div class = "row">
+                        <div class="col-md-2"></div>
+                        <div class = "col-md-4">
+                        <h3>Issues per department</h3></div>
+                        <div class="col-md-2"></div><div class="col-md-4"><h3>Resolutions per department</h3></div>
+                </div>
+                <div class = "row">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-5">
+                        <canvas id="chart" width="400" height="300"></canvas>
+                        <script>
+                                var pieData = [
+                                        {% for item, label, colors in set1 %}
+                                                {
+                                                        value: {{item}},
+                                                        label: "{{label}}",
+                                                        color : "{{colors}}"
+                                                },
+                                        {% endfor %}
+                                ];
+                                // get bar chart canvas
+                                var mychart = document.getElementById("chart").getContext("2d");
+                                steps = 10
+                                max = {{ max }}
+                                // draw pie chart
+                                new Chart(document.getElementById("chart").getContext("2d")).Pie(pieData);
+                        </script>
+                        </div>
+                        <div class="col-md-1"></div>
+                        <div class="col-md-5">
+                        <canvas id="chart1" width="400" height="300"></canvas>
+                        <script>
+                                var pieData = [
+                                        {% for item, label, colors in set2 %}
+                                                {
+                                                value: {{item}},
+                                                label: "{{label}}",
+                                                color : "{{colors}}"
+                                                },
+                                        {% endfor %}
+                                ];
+                                // get bar chart canvas
+                                var mychart = document.getElementById("chart1").getContext("2d");
+                                steps = 10
+                                max = {{ max }}
+                                // draw pie chart
+                                new Chart(document.getElementById("chart1").getContext("2d")).Pie(pieData);
+                        </script>
+                        </div>
+                </div>
+                <div class=row>
+                                <div class="col-md-6"></div>
+                                <a href="{{url_for('login')}}"><button class="btn btn-danger">Back</button></a></li>
+
+
+                </div>
+                <!-- Optional JavaScript -->
+                <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+                <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+                <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+        </body>
+</html>
